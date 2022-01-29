@@ -1,0 +1,514 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+body {
+  font-family: Poppins;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  background-color: #dfe3ef;
+}
+
+button {
+  cursor: pointer;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100vw;
+  height: 80px;
+  padding: 0 20px;
+}
+
+.notification-cont {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 100px;
+  width: 225px;
+  border-radius: 20px;
+  background-color: #ad615c;
+  z-index: 9999;
+  -webkit-animation: up2down 0.5s ease forwards;
+          animation: up2down 0.5s ease forwards;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  color: #f9f7f7;
+}
+
+.notification-cont h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 25px;
+}
+
+.notification-cont button {
+  height: 37px;
+  width: 100px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #f9f7f7;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ad615c;
+}
+
+.notification-cont.open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.notification-cont-bg {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(63, 69, 83, 0.5);
+  z-index: 100;
+}
+
+.notification-cont-bg.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.timer-cont {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 500px;
+  height: 550px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  -ms-grid-rows: auto auto auto;
+      grid-template-rows: auto auto auto;
+}
+
+.timer-cont .timer-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.4rem;
+  color: #3b3a3f;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1/2;
+  letter-spacing: 0.1em;
+}
+
+.timer-cont .timer-text h3 {
+  width: 60px;
+}
+
+.timer-cont .timer-controle {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+}
+
+.timer-cont .timer-controle svg:not(:first-child),
+.timer-cont .timer-controle img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.timer-cont .timer-controle img:not(#pauseButton) {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.timer-cont .timer-controle #pauseButton {
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.timer-cont .timer-controle #pauseButton.on {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.timer-cont .timer-controle #playButton {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.timer-cont .timer-controle #playButton.off {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.timer-cont .circle-outline {
+  stroke-dasharray: 764px;
+  stroke-dashoffset: 0;
+}
+
+.timer-cont .timer-btn {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timer-cont .timer-btn button:first-child {
+  cursor: pointer;
+  border: 3.5px solid #ad615c;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 10px;
+  width: 120px;
+  height: 45px;
+  background-color: transparent;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 30px;
+  margin-right: 8px;
+  color: #ad615c;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.timer-cont .timer-btn button:first-child:hover {
+  background-color: #ad615c;
+  color: #f5f5f5;
+}
+
+.timer-cont .timer-btn button:last-child {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  height: 50px;
+  color: #ad615c;
+  font-size: 20px;
+  width: 40px;
+}
+
+.timer-cont .timer-btn button:last-child:hover {
+  -webkit-animation: reset-btn-anim 0.75s ease-in-out forwards;
+          animation: reset-btn-anim 0.75s ease-in-out forwards;
+}
+
+@-webkit-keyframes reset-btn-anim {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    font-size: 25px;
+  }
+}
+
+@keyframes reset-btn-anim {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    font-size: 25px;
+  }
+}
+
+.adj-sect {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+.adj-sect.open {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+.bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 100.5vh;
+  width: 100vw;
+  background: rgba(63, 69, 83, 0.5);
+  z-index: 100;
+}
+
+.adj-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 530px;
+  height: 550px;
+  background: linear-gradient(132.15deg, #ad615c 0%, #b47772 113.9%);
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+.adj-cont .adj-timer {
+  height: 45%;
+  z-index: 101;
+}
+
+.adj-cont .adj-timer h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 37px;
+  color: #f9f7f7;
+}
+
+.adj-cont .adj-timer .opt-txt-holder, .adj-cont .adj-timer .task-txt-holder {
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.adj-cont .adj-timer .opt-txt-holder h1, .adj-cont .adj-timer .task-txt-holder h1 {
+  position: relative;
+  top: 0;
+}
+
+.adj-cont .adj-timer .timer-opt {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.adj-cont .adj-timer .timer-opt button {
+  width: 110px;
+  height: 44px;
+  background: #9b5853;
+  -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 15px 30px;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 27px;
+  color: #f9f7f7;
+}
+
+.adj-cont .adj-task {
+  padding-bottom: 50px;
+}
+
+.adj-cont .adj-task .task-txt-holder {
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.adj-cont .adj-task h1 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 37px;
+  color: #f9f7f7;
+}
+
+.adj-cont .adj-task input {
+  width: 250px;
+  height: 45px;
+  background: #9b5853;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+  margin-left: 40px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 27px;
+  padding-left: 10px;
+  outline: none;
+  color: #f9f7f7;
+}
+
+.adj-cont .adj-task input::-webkit-input-placeholder {
+  color: rgba(245, 245, 245, 0.7);
+}
+
+.adj-cont .adj-task input:-ms-input-placeholder {
+  color: rgba(245, 245, 245, 0.7);
+}
+
+.adj-cont .adj-task input::-ms-input-placeholder {
+  color: rgba(245, 245, 245, 0.7);
+}
+
+.adj-cont .adj-task input::placeholder {
+  color: rgba(245, 245, 245, 0.7);
+}
+
+.adj-cont .adj-process {
+  padding: 40px;
+}
+
+.adj-cont .adj-process button:first-child {
+  width: 101px;
+  height: 39px;
+  background: #f9f7f7;
+  -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 27px;
+  color: #ad615c;
+}
+
+.adj-cont .adj-process button:last-child {
+  background-color: transparent;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 27px;
+  border: none;
+  color: #f5f5f5;
+}
+
+@media screen and (max-width: 500px) {
+  .timer-cont {
+    width: 95%;
+    top: 40px;
+  }
+  .timer-cont .timer-text {
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .adj-cont {
+    width: 95%;
+    top: 60px;
+  }
+  .adj-cont .timer-opt button {
+    width: 90px !important;
+    height: 30px;
+    font-size: 1rem !important;
+    margin: 10px 25px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .adj-cont {
+    width: 95%;
+  }
+  .adj-cont .timer-opt button {
+    font-size: 0.9rem !important;
+    width: 90px !important;
+    margin: 10px 15px !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .adj-cont h1 {
+    font-size: 1.5rem !important;
+  }
+  .adj-cont .timer-opt {
+    -ms-grid-columns: auto auto !important;
+        grid-template-columns: auto auto !important;
+    -ms-grid-rows: auto auto auto !important;
+        grid-template-rows: auto auto auto !important;
+  }
+  .adj-cont .adj-task input {
+    width: 195px;
+  }
+}
+
+@-webkit-keyframes up2down {
+  to {
+    margin-top: 10px;
+  }
+}
+
+@keyframes up2down {
+  to {
+    margin-top: 10px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

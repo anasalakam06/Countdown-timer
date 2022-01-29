@@ -1,0 +1,415 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+$letter: #3b3a3f;
+$sec: #ad615c;
+
+@mixin center {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+}
+
+body {
+     font-family: Poppins;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     overflow: hidden;
+     background-color: #dfe3ef;
+}
+
+button {
+     cursor: pointer;
+}
+
+//navbar
+.navbar {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     width: 100vw;
+     height: 80px;
+     padding: 0 20px;
+}
+
+.notification-cont {
+     // opacity: 0;
+     // pointer-events: none;
+     
+     display: none;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     height: 100px;
+     width: 225px;
+     border-radius: 20px;
+     background-color: $sec;
+     z-index: 9999;
+     animation: up2down 0.5s ease forwards;
+     transition: 0.5s ease;
+     color: #f9f7f7;
+     h1 {
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 17px;
+          line-height: 25px;
+     }
+     button {
+          height: 37px;
+          width: 100px;
+          border: none;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          background: #f9f7f7;
+
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 1rem;
+          color: #ad615c;
+     }
+     
+}
+
+.notification-cont.open{
+     // opacity: 1;
+     // pointer-events: all; 
+     display: flex;
+}
+.notification-cont-bg {
+     opacity: 0;
+     pointer-events: none; 
+     position: absolute;
+     height: 100vh;
+     width: 100vw;
+     background: rgba(63, 69, 83, 0.5);
+     z-index: 100;
+}
+.notification-cont-bg.open{
+     opacity: 1;
+     pointer-events: all; 
+}
+
+//timer
+
+.timer-cont {
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 500px;
+     height: 550px;
+     display: grid;
+     grid-template-columns: auto auto auto;
+     grid-template-rows: auto auto auto;
+
+     .timer-text {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          font-size: 1.4rem;
+          color: #3b3a3f;
+          grid-column: 1/4;
+          grid-row: 1/2;
+          letter-spacing: 0.1em;
+
+          h3 {
+               width: 60px;
+          }
+     }
+     .timer-controle {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          grid-column: 1/4;
+          grid-row: 2/3;
+          svg:not(:first-child),
+          img {
+               @include center;
+          }
+          img:not(#pauseButton) {
+               cursor: pointer;
+               margin-left: 10px;
+          }
+          #pauseButton {
+               opacity: 0;
+               pointer-events: none;
+               cursor: pointer;
+          }
+          #pauseButton.on {
+               opacity: 1;
+               pointer-events: all;
+          }
+          #playButton {
+               opacity: 1;
+               pointer-events: all;
+          }
+          #playButton.off {
+               opacity: 0;
+               pointer-events: none;
+          }
+     }
+     .circle-outline {
+          stroke-dasharray: 764px;
+          stroke-dashoffset: 0;
+     }
+     .timer-btn {
+          grid-column: 1/4;
+          grid-row: 3/4;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          button:first-child {
+               cursor: pointer;
+               border: 3.5px solid #ad615c;
+               box-sizing: border-box;
+               border-radius: 10px;
+               width: 120px;
+               height: 45px;
+               background-color: transparent;
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: bold;
+               font-size: 1rem;
+               line-height: 30px;
+               margin-right: 8px;
+               color: #ad615c;
+               transition: 0.5s ease;
+          }
+          button:first-child:hover{
+               background-color: #ad615c;
+               color: #f5f5f5;
+          }
+          button:last-child {
+               cursor: pointer;
+               border: none;
+               background-color: transparent;
+               height: 50px;
+               color: #ad615c;
+               font-size: 20px;
+               width: 40px;
+          }
+          button:last-child:hover{
+               animation: reset-btn-anim 0.75s ease-in-out forwards;
+          }
+     }
+}
+@keyframes reset-btn-anim{
+     to{
+          transform: rotate(360deg);
+          font-size: 25px;
+     }
+}
+
+// TIMER SETTINGS
+.adj-sect {
+     opacity: 0;
+     pointer-events: none;
+     transition: 0.5s all ease;
+}
+.adj-sect.open {
+     opacity: 1;
+     pointer-events: all;
+     transition: 0.5s all ease;
+}
+
+.bg {
+     @include center;
+     height: 100.5vh;
+     width: 100vw;
+     background: rgba(63, 69, 83, 0.5);
+     z-index: 100;
+}
+
+.adj-cont {
+     display: flex;
+     flex-direction: column;
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 530px;
+     height: 550px;
+     background: linear-gradient(132.15deg, #ad615c 0%, #b47772 113.9%);
+     border-radius: 10px;
+     z-index: 9999;
+
+     .adj-timer {
+          height: 45%;
+          z-index: 101;
+          
+          h1 {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: bold;
+               font-size: 2rem;
+               line-height: 37px;
+               color: #f9f7f7;
+          }
+          .opt-txt-holder, .task-txt-holder{
+               overflow: hidden;
+               margin-left: 20px;
+               h1{
+                    position: relative;
+                    top: 0;
+               }
+          }
+          .timer-opt {
+               display: grid;
+               grid-template-columns: auto auto auto;
+               grid-template-rows: auto auto;
+               justify-content: center;
+
+               button {
+                    width: 110px;
+                    height: 44px;
+                    background: #9b5853;
+                    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+                    border: none;
+                    border-radius: 10px;
+                    margin: 15px 30px;
+
+                    font-family: Poppins;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    line-height: 27px;
+                    color: #f9f7f7;
+               }
+          }
+     }
+
+     .adj-task {
+          padding-bottom: 50px;
+
+          .task-txt-holder{
+               overflow: hidden;
+               margin-left: 20px;
+          }
+          h1 {
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: bold;
+               font-size: 2rem;
+               line-height: 37px;
+               color: #f9f7f7;
+          }
+          input {
+               width: 250px;
+               height: 45px;
+               background: #9b5853;
+               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+               border: none;
+               border-radius: 10px;
+               margin-left: 40px;
+
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: 600;
+               font-size: 1rem;
+               line-height: 27px;
+               padding-left: 10px;
+               outline: none;
+               color: #f9f7f7;
+          }
+          input::placeholder {
+               color: rgba(245, 245, 245, 0.7);
+          }
+     }
+
+     .adj-process {
+          padding: 40px;
+
+          button:first-child {
+               width: 101px;
+               height: 39px;
+               background: #f9f7f7;
+               box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+               border: none;
+               border-radius: 10px;
+               margin-right: 10px;
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: bold;
+               font-size: 1.2rem;
+               line-height: 27px;
+               color: #ad615c;
+          }
+          button:last-child {
+               background-color: transparent;
+               font-family: Poppins;
+               font-style: normal;
+               font-weight: bold;
+               font-size: 1.2rem;
+               line-height: 27px;
+               border: none;
+               color: #f5f5f5;
+          }
+     }
+}
+
+// footer .creator{
+//      position: absolute;
+//      bottom: -8px;
+//      right: 5px;
+//      transform: translate(-5px, 8px);
+//      user-select: none;
+//      opacity: 0.7;
+//      color: #3B3A3F;
+// }
+
+//media
+@media screen and (max-width: 500px) {
+     .timer-cont {
+          width: 95%;
+          top: 40px;
+          .timer-text {
+               justify-content: space-evenly;
+          }
+     }
+     .adj-cont {
+          width: 95%;
+          top: 60px;
+          .timer-opt button {
+               width: 90px !important;
+               height: 30px;
+               font-size: 1rem !important;
+               margin: 10px 25px !important;
+          }
+     }
+}
+
+@media screen and (max-width: 400px) {
+     .adj-cont {
+          width: 95%;
+          .timer-opt button {
+               font-size: 0.9rem !important;
+               width: 90px !important;
+               margin: 10px 15px !important;
+          }
+     }
+}
+
+@media screen and (max-width: 300px) {
+     .adj-cont {
+          h1 {
+               font-size: 1.5rem !important;
+          }
+          .timer-opt {
+               grid-template-columns: auto auto !important;
+               grid-template-rows: auto auto auto !important;
+          }
+          .adj-task input {
+               width: 195px;
+          }
+     }
+}
+
+@keyframes up2down {
+     to{
+          margin-top: 10px;
+     }
+}
